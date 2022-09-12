@@ -1,0 +1,26 @@
+.navigation {
+	border-bottom: 2px solid #e0f4f5;
+	&List {
+		margin: 0;
+		padding: 0 50px;
+		height: 75px;
+		list-style: none;
+		display: flex;
+		align-items: center;
+		gap: 50px;
+		&__item {
+			font-size: 26px;
+			font-weight: 700;
+			color: #e0f4f5;
+			.link {
+				color: #e0f4f5;
+				text-decoration: none;
+				padding: 5px;
+			}
+			.active {
+				border-bottom: 3px solid #e0f4f5;
+				border-radius: 16px;
+			}
+		}
+	}
+}
