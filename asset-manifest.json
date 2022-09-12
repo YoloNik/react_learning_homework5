@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/react_learning_homework5/static/css/main.1d076c5b.css",
+    "main.js": "/react_learning_homework5/static/js/main.17ec7a2f.js",
+    "static/css/906.84eb0669.chunk.css": "/react_learning_homework5/static/css/906.84eb0669.chunk.css",
+    "static/js/906.2d7a2cd1.chunk.js": "/react_learning_homework5/static/js/906.2d7a2cd1.chunk.js",
+    "static/css/75.4d4ba6dd.chunk.css": "/react_learning_homework5/static/css/75.4d4ba6dd.chunk.css",
+    "static/js/75.268c8cb1.chunk.js": "/react_learning_homework5/static/js/75.268c8cb1.chunk.js",
+    "index.html": "/react_learning_homework5/index.html",
+    "main.1d076c5b.css.map": "/react_learning_homework5/static/css/main.1d076c5b.css.map",
+    "main.17ec7a2f.js.map": "/react_learning_homework5/static/js/main.17ec7a2f.js.map",
+    "906.84eb0669.chunk.css.map": "/react_learning_homework5/static/css/906.84eb0669.chunk.css.map",
+    "906.2d7a2cd1.chunk.js.map": "/react_learning_homework5/static/js/906.2d7a2cd1.chunk.js.map",
+    "75.4d4ba6dd.chunk.css.map": "/react_learning_homework5/static/css/75.4d4ba6dd.chunk.css.map",
+    "75.268c8cb1.chunk.js.map": "/react_learning_homework5/static/js/75.268c8cb1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1d076c5b.css",
+    "static/js/main.17ec7a2f.js"
+  ]
+}
