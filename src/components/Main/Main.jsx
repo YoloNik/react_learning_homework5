@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Redirect, Route, Switch, useParams } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import HomePage from 'pages/HomePage/HomePage';
 import MoviesPage from 'pages/MoviesPage/MoviesPage';
 import { getTrandingMovies } from 'service/apiService';
 
 function Main() {
   const [trendMovies, setTrendMovie] = useState([]);
-  const params = useParams();
 
   useEffect(() => {
     getTrandingMovies().then(movies => {
