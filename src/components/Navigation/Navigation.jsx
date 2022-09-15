@@ -23,7 +23,8 @@ function Navigation() {
             to={{
               pathname: '/moviesPage',
               search: ``,
-              state: { from: '/homePage' },
+
+              state: { from: '/navBar', lable: `home page` },
             }}
           >
             Movies

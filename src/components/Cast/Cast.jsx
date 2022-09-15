@@ -1,14 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from './Cast.module.scss';
+import { useEffect, useState } from 'react';
+import { getCast } from 'service/apiService';
 
-const URL_FOR_POSTER = 'https://image.tmdb.org/t/p/w500/';
+function Cast({ id }) {
+  const URL_FOR_POSTER = 'https://image.tmdb.org/t/p/w500/';
+  const [cast, setCast] = useState([]);
 
-function Cast({ cast }) {
+  useEffect(() => {
+    getCast(id).then(movieCast => {
+      setCast(movieCast.cast);
+    });
+  }, [id]);
+
   return (
     <>
       <ul className={style.castList}>
-        {cast.cast.map(el => (
+        {cast.map(el => (
           <li className={style.actor} key={el.id}>
             <img
               className={style.actor__img}
@@ -26,7 +35,7 @@ function Cast({ cast }) {
 }
 
 Cast.propTypes = {
-  cast: PropTypes.object,
+  id: PropTypes.string,
 };
 
 export default Cast;

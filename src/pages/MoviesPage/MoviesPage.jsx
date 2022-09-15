@@ -8,12 +8,7 @@ import {
   Link,
   useLocation,
 } from 'react-router-dom';
-import {
-  getCast,
-  getSingleMovie,
-  getReviews,
-  getSearchedMovie,
-} from 'service/apiService';
+import { getSingleMovie, getSearchedMovie } from 'service/apiService';
 import styles from './MoviesPage.module.scss';
 
 const Cast = lazy(
@@ -31,28 +26,22 @@ const Reviews = lazy(
 
 const URL_FOR_POSTER = 'https://image.tmdb.org/t/p/w500/';
 
-function MoviesPage() {
+function MoviesPage({ path }) {
   const [movie, setMovie] = useState([]);
   const [genres, setGanres] = useState([]);
-  const [cast, setCast] = useState();
-  const [reviews, setReviews] = useState();
   const [query, setQuery] = useState('');
   const [message, setMessage] = useState('Search movie by name');
+
   const history = useHistory();
-  const { search } = useLocation();
+  const location = useLocation();
   const params = useParams();
 
-  console.log(search);
-
   useEffect(() => {
-    if (history.location.state?.from !== '/homePage') {
+    if (history.location.state?.from !== '/navBar') {
       getSingleMovie(params.id).then(singleMovie => {
         setMovie(singleMovie);
         setGanres(singleMovie.genres);
       });
-      //console.log(movie.genres.map(el => el.name));
-      getCast(params.id).then(movieCast => setCast(movieCast));
-      getReviews(params.id).then(movieReviews => setReviews(movieReviews));
     }
   }, [history.location.state, params.id]);
 
@@ -62,7 +51,7 @@ function MoviesPage() {
 
   const clickSearchMovie = () => {
     getSearchedMovie(query).then(movie => setMovie(movie.results));
-    if (movie.length === 0) {
+    if (movie.length > 0) {
       setMessage(`We cant find movie whith name: ${query}`);
     } else {
       setMessage('');
@@ -74,7 +63,7 @@ function MoviesPage() {
     setQuery(userInput);
   };
 
-  return history.location.state?.from === '/homePage' ? (
+  return location.state?.from === '/navBar' ? (
     <>
       <label>
         <input
@@ -84,7 +73,15 @@ function MoviesPage() {
           value={query}
         />
         <button type="submit" onClick={clickSearchMovie}>
-          Search
+          <Link
+            to={{
+              pathname: '/moviesPage',
+              search: `?query=${query}`,
+              state: { from: '/navBar', lable: `movie list` },
+            }}
+          >
+            Search
+          </Link>
         </button>
       </label>
       {movie.length === 0 && <p style={{ color: '#E0F4F5' }}>{message}</p>}
@@ -96,8 +93,8 @@ function MoviesPage() {
               <Link
                 to={{
                   pathname: `/moviesPage/${el.id}`,
-
-                  state: { from: '/moviesPageSearch' },
+                  search: `?query=${query}`,
+                  state: { from: location, lable: `movie list` },
                 }}
               >
                 {el.title}
@@ -110,7 +107,7 @@ function MoviesPage() {
   ) : (
     <div>
       <button className={styles.goBackBtn} onClick={hendleGoBack}>
-        go back
+        go back to home page
       </button>
       <div className={styles.singleMovie}>
         <img
@@ -162,12 +159,12 @@ function MoviesPage() {
         <Switch>
           <Route path={`/moviesPage/${params.id}/cast`}>
             <Suspense fallback={<div>Loading...</div>}>
-              <Cast cast={cast} />
+              <Cast id={params.id} />
             </Suspense>
           </Route>
-          <Route path={`/moviesPage/${params.id}/reviews`}>
+          <Route path={`${path}/${params.id}/reviews`}>
             <Suspense fallback={<div>Loading...</div>}>
-              <Reviews reviews={reviews} />
+              <Reviews id={params.id} />
             </Suspense>
           </Route>
         </Switch>

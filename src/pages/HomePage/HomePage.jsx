@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import style from './HomePageStyles.module.scss';
 
 const URL_FOR_POSTER = 'https://image.tmdb.org/t/p/w500/';
 
 function HomePage({ trendMovies }) {
   const [trendMovie, setTrendMovie] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     setTrendMovie(trendMovies);
@@ -22,7 +23,7 @@ function HomePage({ trendMovies }) {
               className={style.singleMovie__link}
               to={{
                 pathname: `/moviesPage/${movie.id}`,
-                state: { from: '/homePageCard' },
+                state: { from: location, lable: `home page` },
               }}
             >
               <img
