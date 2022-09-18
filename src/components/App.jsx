@@ -1,13 +1,10 @@
-import Navigation from './Navigation/Navigation';
-import Main from './Main/Main';
-
 import style from './App.module.scss';
+import Phonebook from './Phonebook/Phonebook';
 
 export const App = () => {
   return (
     <div className={style.app}>
-      <Navigation />
-      <Main />
+      <Phonebook />
     </div>
   );
 };

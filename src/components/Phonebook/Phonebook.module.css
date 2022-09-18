@@ -1,0 +1,11 @@
+.phonebook{
+	margin: 0 auto;
+	padding: 0 20px;
+	width: 50vw;
+	background-color: #81BECE;
+	border: 1pX solid #012E4A;
+	text-align: start;
+}
+.title{
+	text-align: center;
+}
